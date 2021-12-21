@@ -1,75 +1,95 @@
-//
-//  Game.swift
-//  sport_scoreboard
-//
-//  Created by Kseniya Marchanka on 12/15/21.
-//
-
 import Foundation
 
+enum GameName: String {
+    case tennis = "tennis", volleyball, football
+}
+
+extension GameName {
+    func getEmoji() -> String {
+        switch self {
+            case .tennis: return "🎾"
+            case .volleyball: return "🏐"
+            default: return "⁉️"
+        }
+    }
+}
+
 protocol GameProtocol {
-    var gameName: String { get }
+    var gameName: GameName { get }
+    var teams: [Team] { get }
+    func handleGoal(teamIndex: Int)
+    func handleScore() -> String?
 }
 
-struct Volleyball: GameProtocol {
-    var gameName: String;
-    var teams: [Player] = [];
-    
-    init(gameName name: String) {
-        self.gameName = name;
+class Volleyball: GameProtocol {
+    var gameName: GameName
+    var teams: [Team] = []
+    var score: [String: Int] = [:]
+
+    init(gameName name: GameName) {
+        self.gameName = name
     }
     
-    func isPlayersRecruited() -> Bool {
-        return self.teams.count == 2;
-    }
-    
-    mutating func addPlayer(_ newPlayer: Player) {
-        if (self.isPlayersRecruited() && self.teams.contains(newPlayer)) {
-            print("Max number of players reached or this player is already exist");
+    func addTeam(_ newTeam: Team) {
+        if (self.teams.count < 2) {
+            self.teams.append(newTeam)
+            self.score[newTeam.name] = 0
         } else {
-            self.teams.append(newPlayer);
+            print("Max number of players reached")
         }
     }
     
-    mutating func removePlayer(_ player: Player) {
-        let updatedTeam = self.teams.filter { $0 != player }
+    func handleGoal(teamIndex: Int) {
+        let teamName = self.teams[teamIndex].name
+        let currentScore = self.score[teamName]
 
-        self.teams = updatedTeam;
+        if let currentScore = currentScore {
+            self.score.updateValue(currentScore + 10, forKey: teamName)
+        }
     }
     
-    func handleScore() {
-        let scoreTeam1 = Int.random(in: 1..<10);
-        let scoreTeam2 = Int.random(in: 1..<10);
-        
-        let winner = scoreTeam1 > scoreTeam2 ? teams[0] : teams[1];
-        
-        print("Team \(winner.name) wins!");
-    }
-}
-
-struct Tennis: GameProtocol {
-    var gameName: String;
-    var teams: [Player] = [];
-    
-    init(gameName name: String) {
-        self.gameName = name;
-        self.teams = [Player("team_1"), Player("TBT", "tim_ka")];
-    }
-    
-    func handleScore() {
-        var scoreTeam1 = 0;
-        var scoreTeam2 = 0;
-
-        for _ in 1...3 {
-            scoreTeam1 += Int.random(in: 1..<100);
-            scoreTeam2 += Int.random(in: 1..<100);
+    func handleScore() -> String? {
+        let teamPoints = [Int](self.score.values);
+                
+        if teamPoints[0] - teamPoints[1] >= 2 {
+            return teams[0].name;
         }
         
-        let winner = scoreTeam1 > scoreTeam2 ? teams[0] : teams[1];
+        if teamPoints[1] - teamPoints[0] >= 2 {
+            return teams[1].name;
+        }
         
-        print("Team \(winner.name) wins!");
+        return nil;
     }
 }
 
-var tennis = Tennis(gameName: "tennis");
-var volleyball = Volleyball(gameName: "volleyball");
+class Tennis: GameProtocol {
+    var gameName: GameName
+    var teams: [Team] = []
+    var score: [String: Int] = [:]
+
+    init(gameName name: GameName) {
+        self.gameName = name
+        self.teams = [Team("team_1"), Team("TBT")]
+        self.score = [self.teams[0].name: 0, self.teams[1].name: 0]
+    }
+    
+    func handleScore() -> String? {
+        for (teamName, score) in self.score {
+            if score == 5 {
+                return teamName
+            }
+        }
+        
+        return nil
+    }
+    
+    func handleGoal(teamIndex: Int) {
+        let teamName = self.teams[teamIndex].name
+        let currentScore = self.score[teamName]
+
+        if let currentScore = currentScore {
+            self.score.updateValue(currentScore + 1, forKey: teamName)
+        }
+    }
+}

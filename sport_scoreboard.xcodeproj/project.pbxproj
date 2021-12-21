@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC34ACE72770BF41007E3393 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC34ACE62770BF41007E3393 /* Team.swift */; };
 		BC94F3C6276A0DF600703281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94F3C5276A0DF600703281 /* AppDelegate.swift */; };
 		BC94F3C8276A0DF600703281 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94F3C7276A0DF600703281 /* SceneDelegate.swift */; };
 		BC94F3CA276A0DF600703281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94F3C9276A0DF600703281 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC34ACE62770BF41007E3393 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		BC94F3C2276A0DF600703281 /* sport_scoreboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sport_scoreboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC94F3C5276A0DF600703281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC94F3C7276A0DF600703281 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				BC94F3D0276A0DFC00703281 /* LaunchScreen.storyboard */,
 				BC94F3D3276A0DFC00703281 /* Info.plist */,
 				BC94F3DA276A100C00703281 /* Player.swift */,
+				BC34ACE62770BF41007E3393 /* Team.swift */,
 				BC94F3DD276A124D00703281 /* Scoreboard.swift */,
 				BC94F3E0276A162C00703281 /* Game.swift */,
 			);
@@ -148,6 +151,7 @@
 			files = (
 				BC94F3DB276A100C00703281 /* Player.swift in Sources */,
 				BC94F3E1276A162C00703281 /* Game.swift in Sources */,
+				BC34ACE72770BF41007E3393 /* Team.swift in Sources */,
 				BC94F3CA276A0DF600703281 /* ViewController.swift in Sources */,
 				BC94F3C6276A0DF600703281 /* AppDelegate.swift in Sources */,
 				BC94F3DE276A124D00703281 /* Scoreboard.swift in Sources */,
