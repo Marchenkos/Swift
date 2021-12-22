@@ -14,15 +14,15 @@ class Scoreboard<G: GameProtocol> {
         while winner == nil {
             let randomTeamIndex = Int.random(in: 0..<2);
 
-            self.handleGoal(randomTeamIndex);
-            winner = game.handleScore();
+            handleGoal(randomTeamIndex);
+            winner = game.checkWinner();
         }
         
         print("\(game.gameName.getEmoji()) \(winner!) win!")
     }
     
     func handleGoal(_ randomTeamIndex: Int) {
-        self.game.handleGoal(teamIndex: randomTeamIndex);
+        game.handleGoal(teamIndex: randomTeamIndex);
     }
 }
 

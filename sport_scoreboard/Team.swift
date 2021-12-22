@@ -9,6 +9,6 @@ class Team {
     }
     
     func generateTeam() {
-        self.players = [Player("generated_team_1"), Player("generated_team_2", "tim_ka")]
+        players = [Player("generated_team_1"), Player("generated_team_2", "tim_ka")]
     }
 }
